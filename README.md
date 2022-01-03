@@ -1,2 +1,2 @@
 # NekrodWidgets
-Библиотека дополнительных виджетов для PySide6
+library of additional widgets for PySide6
