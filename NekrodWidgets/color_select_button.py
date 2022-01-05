@@ -1,12 +1,16 @@
 import sys
 
 from PySide6.QtGui import QColor
-from PySide6.QtWidgets import QPushButton, QApplication, QColorDialog, QMainWindow
+from PySide6.QtWidgets import QPushButton, QApplication, QColorDialog, QMainWindow, QSizePolicy
 
 
 class ColorSelectButton(QPushButton):
     def __init__(self):
         super(ColorSelectButton, self).__init__()
+
+        self.setSizePolicy(
+            QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
+        )
 
         self.color = QColor("white")
 
@@ -28,12 +32,14 @@ class ColorSelectButton(QPushButton):
         self.setStyleSheet(self.css+f"background-color: {self.color.name()}")
 
     def return_color(self):
-        print(self.color)
+        return self.color
 
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+    window = QMainWindow()
     widget = ColorSelectButton()
-    widget.show()
+    window.layout().addWidget(widget)
+    window.show()
     sys.exit(app.exec())
 
